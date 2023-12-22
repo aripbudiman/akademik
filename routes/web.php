@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\GuruController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +20,26 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Home');
+})->middleware('auth')->name('home');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/guru', [GuruController::class, 'index'])->name('guru');
+    Route::get('/guru/create', [GuruController::class, 'create'])->name('guru.create');
+    Route::post('/guru', [GuruController::class, 'store'])->name('guru.store');
+
+    Route::get('user',[UserController::class, 'index'])->name('user');
+    Route::get('user/create',[UserController::class, 'create'])->name('user.create');
+    Route::post('user',[UserController::class, 'store'])->name('user.store');
 });
-// Route::get('/', function () {
-//     return Inertia::render('Home', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
+
+
+
+
+
+
+
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
