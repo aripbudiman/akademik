@@ -1,8 +1,15 @@
 import React from "react";
 import App from "@/Layouts/App";
 import { Link } from "@inertiajs/react";
+import Swal from "sweetalert2";
 export default function Index({ users, errors, flash }) {
-    console.log(flash);
+    if (flash.message) {
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: flash.message,
+        });
+    }
     return (
         <App title="Data Pengguna">
             <h1 className="text-3xl font-semibold">Data Pengguna</h1>
@@ -10,7 +17,7 @@ export default function Index({ users, errors, flash }) {
                 <Link href="/user/create" className="btn btn-primary">
                     Buat Pengguna Baru
                 </Link>
-                <div className="overflow-x-auto shadow-sm mt-5 bg-base-100">
+                <div className="overflow-x-auto shadow-md rounded-md mt-5 bg-base-100">
                     <table className="table">
                         <thead>
                             <tr>
@@ -28,7 +35,14 @@ export default function Index({ users, errors, flash }) {
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>{user.level}</td>
-                                    <td></td>
+                                    <td>
+                                        <Link
+                                            href={`/user/${user.id}/edit`}
+                                            className="text-secondary"
+                                        >
+                                            Update
+                                        </Link>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

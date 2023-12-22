@@ -30,6 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::get('user',[UserController::class, 'index'])->name('user');
     Route::get('user/create',[UserController::class, 'create'])->name('user.create');
     Route::post('user',[UserController::class, 'store'])->name('user.store');
+    Route::get('user/{user}/edit',[UserController::class, 'edit'])->name('user.edit');
+    Route::get('/control_panel', function () {
+        return Inertia::render('ControlPanel');
+    });
 });
 
 
