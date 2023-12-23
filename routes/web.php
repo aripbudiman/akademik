@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SiswaController;
@@ -45,6 +46,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/kurikulum/{kurikulum}/edit',[KurikulumController::class, 'edit'])->name('kurikulum.edit');
     Route::post('/kurikulum/{kurikulum}/update',[KurikulumController::class, 'update'])->name('kurikulum.update');
     Route::delete('/kurikulum/{kurikulum}/delete', [KurikulumController::class, 'destroy'])->name('kurikulum.delete');
+
+    Route::get('/kelas',[KelasController::class, 'index'])->name('kelas');
+    Route::get('/kelas/create',[KelasController::class, 'create'])->name('kelas.create');
+    Route::post('/kelas',[KelasController::class, 'store'])->name('kelas.store');
+    Route::get('/kelas/{kelas}/edit',[KelasController::class, 'edit'])->name('kelas.edit');
+    Route::post('/kelas/{kelas}/update',[KelasController::class, 'update'])->name('kelas.update');
+    Route::delete('/kelas/{kelas}/delete', [KelasController::class, 'destroy'])->name('kelas.delete');
 
     Route::get('/control_panel', function () {
         return Inertia::render('ControlPanel');

@@ -32,7 +32,7 @@ export default function Index({ siswa }) {
                         {siswa.map((siswa, index) => (
                             <tr key={siswa.id}>
                                 <th>{index + 1}</th>
-                                <td>{siswa.name}</td>
+                                <td>{siswa.nama}</td>
                                 <td>{siswa.email}</td>
                                 <td className="flex gap-x-5">
                                     <Link

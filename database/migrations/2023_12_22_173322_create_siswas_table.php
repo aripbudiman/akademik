@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('name')->nullable(true);
+            $table->string('nama')->nullable(true);
             $table->string('nis')->nullable(true);
             $table->string('nisn')->nullable(true);
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan'])->nullable(true);

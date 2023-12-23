@@ -32,12 +32,14 @@ class UserController extends Controller
         if($data['level'] == 'siswa'){
             Siswa::create([
                 'user_id' => $user->id,
-                'email'=>$user->email
+                'email'=>$user->email,
+                'nama'=>$user->name
             ]);
         }else{
             Guru::create([
                 'user_id' => $user->id,
-                'email'=>$user->email
+                'email'=>$user->email,
+                'nama'=>$user->name
             ]);
         }
         return to_route('user')->with('message', 'Data Berhasil Ditambahkan');

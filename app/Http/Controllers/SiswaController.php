@@ -18,7 +18,7 @@ class SiswaController extends Controller
     public function update(Request $request){
         $siswa=Siswa::find($request->id);
         $data =[
-            'name' => $request->nama,
+            'nama' => $request->nama,
             'nisn' => $request->nisn,
             'nis' => $request->nis,
             'jenis_kelamin'=>$request->jenis_kelamin,

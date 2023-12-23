@@ -4,7 +4,6 @@ import TextInput from "@/Customs/TextInput";
 import { Link } from "@inertiajs/react";
 import { router } from "@inertiajs/react";
 export default function Create({ errors }) {
-    console.log(errors);
     const [values, setValues] = useState({
         name: "",
         email: "",
