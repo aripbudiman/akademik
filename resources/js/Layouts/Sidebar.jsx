@@ -109,7 +109,7 @@ export default function Sidebar() {
                             </li>
                             <li className="px-3">
                                 <a
-                                    href="control_panel"
+                                    href="/control_panel"
                                     className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-sky-50 hover:text-sky-500 focus:bg-sky-50 aria-[current=page]:bg-sky-50 aria-[current=page]:text-sky-500 "
                                 >
                                     <div className="flex items-center self-center ">

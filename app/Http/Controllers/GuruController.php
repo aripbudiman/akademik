@@ -10,7 +10,11 @@ use Inertia\Inertia;
 class GuruController extends Controller
 {
     public function index(){
-        return Inertia::render('Guru/Index');
+        $guru=Guru::with('user')->get();
+        // return $guru;
+        return Inertia::render('Guru/Index',[
+            'guru' => $guru
+        ]);
     }
 
     public function create(){
