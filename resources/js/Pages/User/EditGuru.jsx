@@ -3,24 +3,26 @@ import { Link } from "@inertiajs/react";
 import { router } from "@inertiajs/react";
 import TextInput from "@/Customs/TextInput";
 import App from "@/Layouts/App";
-export default function EditGuru({ data }) {
-    console.log(data);
+import Swal from "sweetalert2";
+export default function EditGuru({ data, flash }) {
+    const url = import.meta.env.VITE_URL;
     const [foto, setFoto] = useState(null);
-    const [previewFoto, setPreviewFoto] = useState(null);
+    const [previewFoto, setPreviewFoto] = useState(`${url}/storage/${data.foto}`);
     const [values, setValues] = useState({
+        id: data.id,
         nama: data.nama,
         jenis_kelamin: data.jenis_kelamin,
-        tempat_lahir: "",
-        tanggal_lahir: "",
-        nik: "",
-        agama: "",
-        alamat: "",
-        kecamatan: "",
-        kabupaten: "",
-        provinsi: "",
-        no_hp: "",
+        tempat_lahir: data.tempat_lahir,
+        tanggal_lahir: data.tanggal_lahir,
+        nik: data.nik,
+        agama: data.agama,
+        alamat: data.alamat,
+        kecamatan: data.kecamatan,
+        kabupaten: data.kabupaten,
+        provinsi: data.provinsi,
+        no_hp: data.no_hp,
         email: data.email,
-        status: "",
+        status: data.status,
         foto: "",
     });
     function handleChange(e) {
@@ -49,14 +51,20 @@ export default function EditGuru({ data }) {
     };
     function handleSubmit(e) {
         e.preventDefault();
-        router.post("/guru", values, {
+        router.post("/guru/update", values, {
             forceFormData: true,
+            onSuccess: () => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Success",
+                    text: flash.message,
+                });
+            }
         });
     }
-    console.log(values);
     return (
         <App title="Guru Create">
-            <h1 className="text-3xl font-semibold">Create</h1>
+            <h1 className="text-3xl font-semibold">Perbaharui Data</h1>
             <div className="mt-5">
                 <form className="grid grid-cols-2 gap-5">
                     <TextInput
@@ -74,8 +82,8 @@ export default function EditGuru({ data }) {
                             name="jenis_kelamin"
                             onChange={handleChange}
                         >
-                            <option value="laki-laki">Laki-laki</option>
-                            <option value="perempuan">Perempuan</option>
+                            <option value="laki-laki" selected={values.jenis_kelamin === "laki-laki"}>Laki-laki</option>
+                            <option value="perempuan" selected={values.jenis_kelamin === "perempuan"}>Perempuan</option>
                         </select>
                     </label>
                     <TextInput
@@ -91,7 +99,7 @@ export default function EditGuru({ data }) {
                         value={values.tanggal_lahir}
                         onChange={handleChange}
                     />
-                    <TextInput label="NIK" name="nik" onChange={handleChange} />
+                    <TextInput label="NIK" name="nik" value={values.nik} onChange={handleChange} />
                     <TextInput
                         label="Agama"
                         name="agama"

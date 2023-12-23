@@ -25,6 +25,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/guru', [GuruController::class, 'index'])->name('guru');
     Route::get('/guru/create', [GuruController::class, 'create'])->name('guru.create');
+    Route::post('/guru/update',[GuruController::class, 'update'])->name('guru.update');
     Route::post('/guru', [GuruController::class, 'store'])->name('guru.store');
 
     Route::get('user',[UserController::class, 'index'])->name('user');
