@@ -60,7 +60,7 @@ export default function ControlPanel() {
                 </Link>
                 <Link
                     className="bg-slate-200 hover:bg-slate-300 text-slate-800 py-10"
-                    href="/matapelajaran"
+                    href="/mata_pelajaran"
                 >
                     <div className="flex flex-col justify-center items-center">
                         <Icon className="text-4xl" icon="basil:book-solid" />

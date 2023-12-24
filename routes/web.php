@@ -4,11 +4,12 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\GuruController;
-use App\Http\Controllers\KelasController;
-use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\KurikulumController;
+use App\Http\Controllers\MataPelajaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/kelas/{kelas}/edit',[KelasController::class, 'edit'])->name('kelas.edit');
     Route::post('/kelas/{kelas}/update',[KelasController::class, 'update'])->name('kelas.update');
     Route::delete('/kelas/{kelas}/delete', [KelasController::class, 'destroy'])->name('kelas.delete');
+
+    Route::get('/mata_pelajaran',[MataPelajaranController::class, 'index'])->name('mata_pelajaran');
+    Route::get('/mata_pelajaran/create',[MataPelajaranController::class, 'create'])->name('mata_pelajaran.create');
+    Route::post('/mata_pelajaran',[MataPelajaranController::class, 'store'])->name('mata_pelajaran.store');
+    Route::get('/mata_pelajaran/{mata_pelajaran}/edit',[MataPelajaranController::class, 'edit'])->name('mata_pelajaran.edit');
+    Route::post('/mata_pelajaran/{mata_pelajaran}/update',[MataPelajaranController::class, 'update'])->name('mata_pelajaran.update');
+    Route::delete('/mata_pelajaran/{mata_pelajaran}/delete', [MataPelajaranController::class, 'destroy'])->name('mata_pelajaran.delete');
 
     Route::get('/control_panel', function () {
         return Inertia::render('ControlPanel');

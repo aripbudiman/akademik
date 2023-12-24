@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "@inertiajs/react";
 export default function Navbar() {
     return (
         <div className="navbar sticky top-0 right-0 left-0 w-full z-40 bg-base-100">
@@ -41,7 +41,14 @@ export default function Navbar() {
                             <a>Settings</a>
                         </li>
                         <li>
-                            <a>Logout</a>
+                            <Link
+                                href="/logout"
+                                method="post"
+                                as="button"
+                                type="button"
+                            >
+                                Logout
+                            </Link>
                         </li>
                     </ul>
                 </div>
