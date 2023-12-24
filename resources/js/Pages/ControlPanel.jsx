@@ -9,7 +9,7 @@ export default function ControlPanel() {
             <div className="grid grid-cols-4 gap-5 my-10">
                 <Link
                     className="bg-slate-200 hover:bg-slate-300 text-slate-800 py-10"
-                    href="/siswa"
+                    href="/identitas"
                 >
                     <div className="flex flex-col justify-center items-center">
                         <Icon className="text-4xl" icon="fa-solid:university" />

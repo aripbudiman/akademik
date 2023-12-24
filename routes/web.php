@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\IdentitasController;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\MataPelajaranController;
@@ -81,6 +82,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/control_panel', function () {
         return Inertia::render('ControlPanel');
     });
+    Route::get('/identitas', [IdentitasController::class, 'index'])->name('identitas');
+    Route::get('/identitas/create', [IdentitasController::class, 'create'])->name('identitas.create');
+    Route::post('/identitas', [IdentitasController::class, 'store'])->name('identitas.store');
+    Route::get('/identitas/{identitas}/edit', [IdentitasController::class, 'edit'])->name('identitas.edit');
+    Route::post('/identitas/{identitas}/update', [IdentitasController::class, 'update'])->name('identitas.update');
 });
 
 
