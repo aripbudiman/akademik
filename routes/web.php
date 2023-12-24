@@ -10,6 +10,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\MataPelajaranController;
+use App\Http\Controllers\JadwalPelajaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/mata_pelajaran/{mata_pelajaran}/edit',[MataPelajaranController::class, 'edit'])->name('mata_pelajaran.edit');
     Route::post('/mata_pelajaran/{mata_pelajaran}/update',[MataPelajaranController::class, 'update'])->name('mata_pelajaran.update');
     Route::delete('/mata_pelajaran/{mata_pelajaran}/delete', [MataPelajaranController::class, 'destroy'])->name('mata_pelajaran.delete');
+
+    Route::get('/jadwal_pelajaran',[JadwalPelajaranController::class, 'index'])->name('jadwal_pelajaran');
+    Route::get('/jadwal_pelajaran/create',[JadwalPelajaranController::class, 'create'])->name('jadwal_pelajaran.create');
+    Route::post('/jadwal_pelajaran',[JadwalPelajaranController::class, 'store'])->name('jadwal_pelajaran.store');
+    Route::get('/jadwal_pelajaran/{jadwal_pelajaran}/edit',[JadwalPelajaranController::class, 'edit'])->name('jadwal_pelajaran.edit');
+    Route::post('/jadwal_pelajaran/{jadwal_pelajaran}/update',[JadwalPelajaranController::class, 'update'])->name('jadwal_pelajaran.update');
+    Route::delete('/jadwal_pelajaran/{jadwal_pelajaran}/delete', [JadwalPelajaranController::class, 'destroy'])->name('jadwal_pelajaran.delete');
 
     Route::get('/control_panel', function () {
         return Inertia::render('ControlPanel');

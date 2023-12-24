@@ -94,6 +94,18 @@ export default function ControlPanel() {
                         <h1 className="text-lg">Pembayaran</h1>
                     </div>
                 </Link>
+                <Link
+                    className="bg-slate-200 hover:bg-slate-300 text-slate-800 py-10"
+                    href="/jadwal_pelajaran"
+                >
+                    <div className="flex flex-col justify-center items-center">
+                        <Icon
+                            className="text-4xl"
+                            icon="mingcute:checkbox-fill"
+                        />
+                        <h1 className="text-lg">Jadwal Pelajaran</h1>
+                    </div>
+                </Link>
             </div>
         </App>
     );
