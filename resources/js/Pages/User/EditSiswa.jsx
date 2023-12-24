@@ -14,7 +14,7 @@ export default function EditSiswa({ data, flash }) {
 
     const [values, setValues] = useState({
         id: data.id,
-        nama: data.name,
+        nama: data.nama,
         nis: data.nis,
         nisn: data.nisn,
         jenis_kelamin: data.jenis_kelamin,

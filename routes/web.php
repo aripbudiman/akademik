@@ -9,6 +9,7 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KurikulumController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\JadwalPelajaranController;
 
@@ -69,6 +70,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/jadwal_pelajaran/{jadwal_pelajaran}/edit',[JadwalPelajaranController::class, 'edit'])->name('jadwal_pelajaran.edit');
     Route::post('/jadwal_pelajaran/{jadwal_pelajaran}/update',[JadwalPelajaranController::class, 'update'])->name('jadwal_pelajaran.update');
     Route::delete('/jadwal_pelajaran/{jadwal_pelajaran}/delete', [JadwalPelajaranController::class, 'destroy'])->name('jadwal_pelajaran.delete');
+
+    Route::get('/pembayaran',[PembayaranController::class, 'index'])->name('pembayaran');
+    Route::get('/pembayaran/create',[PembayaranController::class, 'create'])->name('pembayaran.create');
+    Route::post('/pembayaran',[PembayaranController::class, 'store'])->name('pembayaran.store');
+    Route::get('/pembayaran/{pembayaran}/edit',[PembayaranController::class, 'edit'])->name('pembayaran.edit');
+    Route::post('/pembayaran/{pembayaran}/update',[PembayaranController::class, 'update'])->name('pembayaran.update');
+    Route::delete('/pembayaran/{pembayaran}/delete', [PembayaranController::class, 'destroy'])->name('pembayaran.delete');
 
     Route::get('/control_panel', function () {
         return Inertia::render('ControlPanel');
