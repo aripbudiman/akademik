@@ -3,6 +3,7 @@ import App from "@/Layouts/App";
 import { Icon } from "@iconify/react";
 import { Link } from "@inertiajs/react";
 export default function Identitas({ identitas }) {
+    console.log(identitas);
     return (
         <App title="Identitas Sekolah">
             <h1 className="text-3xl font-semibold">Identitas Sekolah</h1>
@@ -11,43 +12,43 @@ export default function Identitas({ identitas }) {
                     <tbody>
                         <tr>
                             <td>Nama Sekolah</td>
-                            <td>{identitas.nama_sekolah}</td>
+                            <td>: {identitas.nama_sekolah}</td>
                         </tr>
                         <tr>
                             <td>Nama Kepala Sekolah</td>
-                            <td>{identitas.kepala_sekolah}</td>
+                            <td>: {identitas.nama_kepala_sekolah}</td>
                         </tr>
                         <tr>
                             <td>NPSN</td>
-                            <td>{identitas.npsn}</td>
+                            <td>: {identitas.npsn}</td>
                         </tr>
                         <tr>
                             <td>NSS</td>
-                            <td>{identitas.nss}</td>
+                            <td>: {identitas.nss}</td>
                         </tr>
                         <tr>
                             <td>Alamat Sekolah</td>
-                            <td>{identitas.alamat_Sekolah}</td>
+                            <td>: {identitas.alamat_sekolah}</td>
                         </tr>
                         <tr>
                             <td>Kode POS</td>
-                            <td>{identitas.kode_pos}</td>
+                            <td>: {identitas.kode_pos}</td>
                         </tr>
                         <tr>
                             <td>Kabupaten</td>
-                            <td>{identitas.kabupaten}</td>
+                            <td>: {identitas.kabupaten}</td>
                         </tr>
                         <tr>
                             <td>Provinsi</td>
-                            <td>{identitas.provinsi}</td>
+                            <td>: {identitas.provinsi}</td>
                         </tr>
                         <tr>
                             <td>Email</td>
-                            <td>{identitas.email}</td>
+                            <td>: {identitas.email}</td>
                         </tr>
                         <tr>
                             <td>Website</td>
-                            <td>{identitas.website}</td>
+                            <td>: {identitas.website}</td>
                         </tr>
                     </tbody>
                 </table>

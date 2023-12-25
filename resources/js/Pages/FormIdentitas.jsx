@@ -4,18 +4,18 @@ import { Link, router } from "@inertiajs/react";
 import { Icon } from "@iconify/react";
 import TextInput from "@/Customs/TextInput";
 import Swal from "sweetalert2";
-export default function FormIdentitas() {
+export default function FormIdentitas({ identitas }) {
     const [values, setValues] = useState({
-        nama_sekolah: "",
-        nama_kepala_sekolah: "",
-        npsn: "",
-        nss: "",
-        alamat_sekolah: "",
-        kode_pos: "",
-        kabupaten: "",
-        provinsi: "",
-        email: "",
-        website: "",
+        nama_sekolah: identitas.nama_sekolah,
+        nama_kepala_sekolah: identitas.nama_kepala_sekolah,
+        npsn: identitas.npsn,
+        nss: identitas.nss,
+        alamat_sekolah: identitas.alamat_sekolah,
+        kode_pos: identitas.kode_pos,
+        kabupaten: identitas.kabupaten,
+        provinsi: identitas.provinsi,
+        email: identitas.email,
+        website: identitas.website,
     });
 
     const change = (e) => {
@@ -24,6 +24,19 @@ export default function FormIdentitas() {
             [e.target.name]: e.target.value,
         });
     };
+
+    const submit = (e) => {
+        e.preventDefault();
+        router.post(`/identitas/${identitas.id}/update`, values, {
+            onSuccess: () => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Success",
+                    text: "Identitas Sekolah Berhasil",
+                });
+            },
+        });
+    }
     return (
         <App title="Form Identitas Sekolah">
             <h1 className="text-3xl font-semibold">Form Identitas Sekolah</h1>
@@ -89,17 +102,17 @@ export default function FormIdentitas() {
                     onChange={change}
                 />
                 <div className="mt-5 mb-5 flex gap-x-4">
-                    <button className="btn btn-primary">
+                    <button onClick={submit} className="btn btn-primary">
                         <Icon className="text-xl" icon="carbon:save" />
                         Simpan
                     </button>
-                    <button className="btn btn-secondary">
+                    <Link href="/identitas" className="btn btn-secondary">
                         <Icon
                             className="text-xl"
                             icon="icon-park-outline:back"
                         />
                         Kembali
-                    </button>
+                    </Link>
                 </div>
             </div>
         </App>

@@ -4,15 +4,14 @@ import { Icon } from "@iconify/react";
 export default function Sidebar() {
     const [isSideNavOpen, setIsSideNavOpen] = useState(false);
     return (
-        <>
+        <div className="h-full">
             <button
                 title="Side navigation"
                 type="button"
-                className={`visible fixed left-6 top-6 z-40 order-10 block h-10 w-10 self-center rounded bg-white opacity-100 lg:hidden ${
-                    isSideNavOpen
-                        ? "visible opacity-100 [&_span:nth-child(1)]:w-6 [&_span:nth-child(1)]:translate-y-0 [&_span:nth-child(1)]:rotate-45 [&_span:nth-child(3)]:w-0 [&_span:nth-child(2)]:-rotate-45 "
-                        : ""
-                }`}
+                className={`visible fixed left-6 top-6 z-40 order-10 block h-10 w-10 self-center rounded bg-white opacity-100 lg:hidden ${isSideNavOpen
+                    ? "visible opacity-100 [&_span:nth-child(1)]:w-6 [&_span:nth-child(1)]:translate-y-0 [&_span:nth-child(1)]:rotate-45 [&_span:nth-child(3)]:w-0 [&_span:nth-child(2)]:-rotate-45 "
+                    : ""
+                    }`}
                 aria-haspopup="menu"
                 aria-label="Side navigation"
                 aria-expanded={isSideNavOpen ? " true" : "false"}
@@ -37,9 +36,8 @@ export default function Sidebar() {
             <aside
                 id="nav-menu-4"
                 aria-label="Side navigation"
-                className={`sticky top-0 bottom-0 left-0 z-40 flex w-72 flex-col border-r border-r-slate-200 bg-white transition-transform lg:translate-x-0 ${
-                    isSideNavOpen ? "translate-x-0" : " -translate-x-full"
-                }`}
+                className={`sticky top-0 bottom-0 left-0 z-40 flex w-72 h-screen flex-col border-r border-r-slate-200 bg-white transition-transform lg:translate-x-0 ${isSideNavOpen ? "translate-x-0" : " -translate-x-full"
+                    }`}
             >
                 <div className="flex flex-col items-center gap-4 border-b border-slate-200 p-6">
                     <div className="shrink-0">
@@ -249,11 +247,10 @@ export default function Sidebar() {
                 </footer>
             </aside>
             <div
-                className={`fixed top-0 bottom-0 left-0 right-0 z-30 bg-slate-900/20 transition-colors sm:hidden ${
-                    isSideNavOpen ? "block" : "hidden"
-                }`}
+                className={`fixed top-0 bottom-0 left-0 right-0 z-30 bg-slate-900/20 transition-colors sm:hidden ${isSideNavOpen ? "block" : "hidden"
+                    }`}
                 onClick={() => setIsSideNavOpen(false)}
             ></div>
-        </>
+        </div>
     );
 }

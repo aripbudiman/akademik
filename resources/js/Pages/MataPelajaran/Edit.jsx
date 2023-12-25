@@ -30,8 +30,8 @@ export default function Edit({ guru, flash, errors, data }) {
         });
     };
     return (
-        <App title="Create">
-            <h1 className="text-3xl font-semibold">Create</h1>
+        <App title="Edit">
+            <h1 className="text-3xl font-semibold">Edit</h1>
             <div className="mt-5">
                 <TextInput
                     name="kode_mapel"

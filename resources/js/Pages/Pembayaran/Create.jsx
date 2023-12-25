@@ -94,6 +94,7 @@ export default function Create({ flash, siswa, errors }) {
                         onChange={change}
                         value={values.siswa_id}
                     >
+                        <option>--Pilih siswa--</option>
                         {siswa.map((s) => (
                             <option key={s.id} value={s.id}>
                                 {s.nama}

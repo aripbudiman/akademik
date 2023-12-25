@@ -23,7 +23,7 @@ export default function Index({ mataPelajaran }) {
                 <Link className="btn btn-primary" href="/mata_pelajaran/create">
                     Tambah Mapel
                 </Link>
-                <div className="overflow-x-auto bg-base-100 mt-5">
+                <div className="overflow-x-auto bg-base-100 mt-5 shadow-md rounded-md">
                     <table className="table">
                         <thead>
                             <tr>

@@ -26,7 +26,8 @@ class IdentitasController extends Controller
         return back()->with('message', 'Data identitas berhasil diperbarui');
     }
 
-    public function store(Request $request){
-        
-    }
+    // public function store(Request $request){
+    //     Identitas::create($request->all());
+    //     return back()->with('message', 'Data identitas berhasil ditambahkan');
+    // }
 }

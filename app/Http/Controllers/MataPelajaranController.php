@@ -34,7 +34,7 @@ class MataPelajaranController extends Controller
             'jumlah_jam' => $request->jumlah_jam,
             'guru_id' => $request->guru_id
         ]);
-        return back()->with('message', 'Mata Pelajaran Berhasil');
+        return redirect()->route('mata_pelajaran')->with('message', 'Mata Pelajaran Berhasil');
     }
 
     public function edit(MP $mataPelajaran){

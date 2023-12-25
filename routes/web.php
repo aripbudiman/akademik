@@ -13,7 +13,7 @@ use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\JadwalPelajaranController;
-
+use App\Http\Controllers\AbsensiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -82,11 +82,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/control_panel', function () {
         return Inertia::render('ControlPanel');
     });
+
     Route::get('/identitas', [IdentitasController::class, 'index'])->name('identitas');
     Route::get('/identitas/create', [IdentitasController::class, 'create'])->name('identitas.create');
     Route::post('/identitas', [IdentitasController::class, 'store'])->name('identitas.store');
     Route::get('/identitas/{identitas}/edit', [IdentitasController::class, 'edit'])->name('identitas.edit');
     Route::post('/identitas/{identitas}/update', [IdentitasController::class, 'update'])->name('identitas.update');
+
+    Route::get('/absensi',[AbsensiController::class, 'index'])->name('absensi');
+    Route::get('/absensi/create',[AbsensiController::class, 'create'])->name('absensi.create');
+    Route::post('/absensi',[AbsensiController::class, 'store'])->name('absensi.store');
+    Route::get('/absensi/{absensi}/edit',[AbsensiController::class, 'edit'])->name('absensi.edit');
+    Route::post('/absensi/{absensi}/update',[AbsensiController::class, 'update'])->name('absensi.update');
+    Route::delete('/absensi/{absensi}/delete', [AbsensiController::class, 'destroy'])->name('absensi.delete');
 });
 
 
