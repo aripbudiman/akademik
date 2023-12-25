@@ -5,8 +5,8 @@ export default function Index({ guru }) {
     return (
         <App title="Guru">
             <h1 className="text-3xl font-semibold">Data Guru</h1>
-            <div className="overflow-x-auto">
-                <table className="table bg-base-100 my-7">
+            <div className="overflow-x-auto bg-base-100 my-7 shadow-md rounded-md">
+                <table className="table">
                     <thead>
                         <tr>
                             <th>No</th>

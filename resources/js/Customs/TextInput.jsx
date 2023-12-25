@@ -8,7 +8,7 @@ export default function TextInput({
     ...props
 }) {
     return (
-        <label className="form-control w-full">
+        <label className={`form-control w-full ${props.className}`}>
             <div className="label">
                 <span className="label-text first-letter:uppercase">
                     {label}

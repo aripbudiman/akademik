@@ -14,6 +14,7 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\JadwalPelajaranController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\BerkasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,6 +96,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/absensi/{absensi}/edit',[AbsensiController::class, 'edit'])->name('absensi.edit');
     Route::post('/absensi/{absensi}/update',[AbsensiController::class, 'update'])->name('absensi.update');
     Route::delete('/absensi/{absensi}/delete', [AbsensiController::class, 'destroy'])->name('absensi.delete');
+
+    Route::get('/berkas',[BerkasController::class, 'index'])->name('berkas');
+    Route::get('/berkas/create',[BerkasController::class, 'create'])->name('berkas.create');
+    Route::post('/berkas',[BerkasController::class, 'store'])->name('berkas.store');
+    Route::get('/berkas/{berkas}/edit',[BerkasController::class, 'edit'])->name('berkas.edit');
+    Route::post('/berkas/{berkas}/update',[BerkasController::class, 'update'])->name('berkas.update');
+    Route::delete('/berkas/{berkas}/delete', [BerkasController::class, 'destroy'])->name('berkas.delete');
+    
 });
 
 
