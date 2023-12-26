@@ -2,8 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Guru;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -27,6 +31,8 @@ class HandleInertiaRequests extends Middleware
      *
      * @return array<string, mixed>
      */
+
+    
     public function share(Request $request): array
     {
         return [
@@ -36,6 +42,12 @@ class HandleInertiaRequests extends Middleware
             ],
             'flash' => [
                 'message' => fn () => $request->session()->get('message')
+            ],
+            'd_siswa' => [
+                'profile_siswa' => Auth::check() ? Siswa::where('user_id', Auth::user()->id)->first() :'',
+            ],
+            'd_guru' => [
+                'profile_guru' => Auth::check() ? Guru::where('user_id', Auth::user()->id)->first() :'',
             ],
         ];
     }

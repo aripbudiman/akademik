@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
+import { usePage } from "@inertiajs/react";
 export default function Navbar() {
+    const url = import.meta.env.VITE_URL
+    const { auth, d_siswa, d_guru } = usePage().props;
     return (
         <div className="navbar sticky top-0 right-0 left-0 w-full z-40 bg-base-100">
             <div className="flex-1">
@@ -21,10 +24,24 @@ export default function Navbar() {
                         className="btn btn-ghost btn-circle avatar"
                     >
                         <div className="w-10 rounded-full">
-                            <img
-                                alt="Tailwind CSS Navbar component"
-                                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                            />
+                            {(auth.user.level) === "siswa" && (
+                                <img
+                                    alt="Photo Profile"
+                                    src={url + 'storage/' + d_siswa.profile_siswa.foto}
+                                />
+                            )}
+                            {(auth.user.level) === "guru" && (
+                                <img
+                                    alt="Photo Profile"
+                                    src={url + 'storage/' + d_guru.profile_guru.foto}
+                                />
+                            )}
+                            {(auth.user.level) === "admin" && (
+                                <img className="border-2 rounded-full"
+                                    alt="Photo Profile"
+                                    src={url + 'default.jpg'}
+                                />
+                            )}
                         </div>
                     </div>
                     <ul

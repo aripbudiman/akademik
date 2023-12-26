@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Berkas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class BerkasController extends Controller
@@ -25,10 +26,17 @@ class BerkasController extends Controller
      */
     public function create()
     {
-        $siswa=Siswa::all();
-        return Inertia::render('Berkas/Create',[
-            'siswa' => $siswa
-        ]);
+        if(Auth::user()->level == 'admin'){
+            $siswa=Siswa::all();
+            return Inertia::render('Berkas/Create',[
+                'siswa' => $siswa
+            ]);
+        }else{
+            $siswa=Siswa::where('user_id',Auth::user()->id)->get();
+            return Inertia::render('Berkas/Create',[
+                'siswa' => $siswa
+            ]);
+        }
     }
 
     /**
@@ -50,7 +58,11 @@ class BerkasController extends Controller
             }
         }
         Berkas::create($data);
-        return redirect()->route('berkas')->with('message','Berkas berhasil ditambahkan');
+        if(Auth::user()->level == 'admin'){
+            return redirect()->route('berkas')->with('message','Berkas berhasil ditambahkan');
+        }else{
+            return redirect()->route('siswa.berkas.index')->with('message','Berkas berhasil ditambahkan');
+        }
     }
 
     /**
@@ -66,11 +78,19 @@ class BerkasController extends Controller
      */
     public function edit(Berkas $berkas)
     {
-        $siswa=Siswa::all();
-        return Inertia::render('Berkas/Edit',[
-            'berkas' => $berkas,
-            'siswa' => $siswa
-        ]);
+        if(Auth::user()->level == 'admin'){
+            $siswa=Siswa::all();
+            return Inertia::render('Berkas/Edit',[
+                'berkas' => $berkas,
+                'siswa' => $siswa
+            ]);
+        }else{
+            $siswa=Siswa::where('user_id',Auth::user()->id)->get();
+            return Inertia::render('Berkas/Edit',[
+                'berkas' => $berkas,
+                'siswa' => $siswa
+            ]);
+        }
     }
 
     /**
@@ -94,7 +114,11 @@ class BerkasController extends Controller
         }
     }
         $berkas->update($data);
+        if(Auth::user()->level == 'admin'){
         return redirect()->route('berkas')->with('message','Berkas berhasil diperbaharui');
+        }else{
+        return redirect()->route('siswa.berkas.index')->with('message','Berkas berhasil diperbaharui');
+        }
     }
 
     /**

@@ -3,7 +3,7 @@ import App from '@/Layouts/App'
 import { Link, router } from '@inertiajs/react';
 import Swal from 'sweetalert2';
 import TextInput from '@/Customs/TextInput';
-
+import { Icon } from '@iconify/react';
 export default function Edit({ errors, siswa, flash, berkas }) {
     const url = import.meta.env.VITE_URL;
     const [previewKK, setPreviewKK] = useState(url + "/storage/" + berkas.kk)
@@ -266,12 +266,17 @@ export default function Edit({ errors, siswa, flash, berkas }) {
                         )}
                     </div>
                 </div>
-                <div className="mt-5">
+                <div className="mt-5 flex gap-x-4">
                     <button
                         onClick={update}
                         className="btn btn-primary"
                     >
-                        Update Berkas
+                        <Icon icon="material-symbols-light:save-outline" /> Update Berkas
+                    </button>
+                    <button onClick={() => window.history.back()}
+                        className="btn btn-accent"
+                    >
+                        <Icon icon="icon-park-outline:back" /> Kembali
                     </button>
                 </div>
             </div>

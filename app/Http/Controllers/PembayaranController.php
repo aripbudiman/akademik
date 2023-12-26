@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Siswa;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PembayaranController extends Controller
 {
@@ -25,10 +26,17 @@ class PembayaranController extends Controller
      */
     public function create()
     {
-        $siswa=Siswa::all();
-        return Inertia::render('Pembayaran/Create',[
-            'siswa' => $siswa
-        ]);
+        if(Auth::user()->role == 'admin'){
+            $siswa=Siswa::all();
+            return Inertia::render('Pembayaran/Create',[
+                'siswa' => $siswa
+            ]);
+        }else{
+            $siswa=Siswa::where('user_id', Auth::user()->id)->get();
+            return Inertia::render('Pembayaran/Create',[
+                'siswa' => $siswa
+            ]);
+        }
     }
 
     /**
@@ -43,7 +51,6 @@ class PembayaranController extends Controller
             'dsp'=>'required|numeric',
             'jumlah'=>'required|numeric',
             'tanggal'=>'required',
-            'foto'=>'required|image|mimes:jpeg,png,jpg',
             'konfirmasi'=>'required'
         ]);
         $data=$request->all();

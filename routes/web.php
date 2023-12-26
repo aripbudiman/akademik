@@ -15,6 +15,12 @@ use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\JadwalPelajaranController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\BerkasController;
+use App\Models\Siswa;
+use App\Models\Guru;
+use App\Models\Berkas;
+use App\Http\Controllers\Siswa\AbsensiController as SiswasAbsensiController;
+use App\Http\Controllers\Siswa\BerkasController as SiswasBerkasController;
+use App\Http\Controllers\Siswa\PembayaranController as SiswasPembayaranController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,9 +33,20 @@ use App\Http\Controllers\BerkasController;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Home');
+    $siswa=Siswa::count();
+    $guru=Guru::count();
+    $berkas=Berkas::count();
+    return Inertia::render('Home',[
+        'siswa' => $siswa,
+        'guru' => $guru,
+        'berkas' => $berkas
+    ]);
 })->middleware('auth')->name('home');
-
+Route::prefix('siswa')->middleware('auth')->group(function () {
+    Route::get('/lihat_absen', [SiswasAbsensiController::class, 'lihat'])->name('lihat_absensi');
+    Route::get('/berkas',[SiswasBerkasController::class, 'index'])->name('siswa.berkas.index');
+    Route::get('/pembayaran',[SiswasPembayaranController::class, 'index'])->name('siswa.pembayaran');
+});
 Route::middleware('auth')->group(function () {
     Route::get('/guru', [GuruController::class, 'index'])->name('guru');
     Route::get('/guru/create', [GuruController::class, 'create'])->name('guru.create');

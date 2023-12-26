@@ -168,9 +168,9 @@ export default function Create({ flash, siswa, errors }) {
                     <button className="btn btn-primary" onClick={submit}>
                         Simpan
                     </button>
-                    <Link href="/pembayaran" className="btn btn-secondary">
+                    <button onClick={() => { window.history.back() }} className="btn btn-secondary">
                         Kembali
-                    </Link>
+                    </button>
                 </div>
             </div>
         </App>
