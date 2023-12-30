@@ -106,6 +106,15 @@ export default function ControlPanel() {
                         <h1 className="text-lg">Jadwal Pelajaran</h1>
                     </div>
                 </Link>
+                <Link
+                    className="bg-slate-200 hover:bg-slate-300 text-slate-800 py-10"
+                    href="/ruangan"
+                >
+                    <div className="flex flex-col justify-center items-center">
+                        <Icon className="text-4xl" icon="fluent-emoji-high-contrast:school" />
+                        <h1 className="text-lg">Set Ruangan</h1>
+                    </div>
+                </Link>
             </div>
         </App>
     );

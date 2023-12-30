@@ -15,6 +15,7 @@ use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\JadwalPelajaranController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\BerkasController;
+use App\Http\Controllers\RuanganController;
 use App\Models\Siswa;
 use App\Models\Guru;
 use App\Models\Berkas;
@@ -46,6 +47,10 @@ Route::prefix('siswa')->middleware('auth')->group(function () {
     Route::get('/lihat_absen', [SiswasAbsensiController::class, 'lihat'])->name('lihat_absensi');
     Route::get('/berkas',[SiswasBerkasController::class, 'index'])->name('siswa.berkas.index');
     Route::get('/pembayaran',[SiswasPembayaranController::class, 'index'])->name('siswa.pembayaran');
+});
+Route::prefix('guru')->middleware('auth')->group(function () {
+    Route::get('/isi_absen/{ruangan}/ruangan/{mapel}',[AbsensiController::class, 'isi'])->name('isi_absen');
+    Route::post('/isi_absen',[AbsensiController::class, 'isiAbsensi'])->name('isi_absen.isi');
 });
 Route::middleware('auth')->group(function () {
     Route::get('/guru', [GuruController::class, 'index'])->name('guru');
@@ -97,6 +102,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/pembayaran/{pembayaran}/update',[PembayaranController::class, 'update'])->name('pembayaran.update');
     Route::delete('/pembayaran/{pembayaran}/delete', [PembayaranController::class, 'destroy'])->name('pembayaran.delete');
 
+    Route::get('/ruangan',[RuanganController::class, 'index'])->name('ruangan');
+    Route::get('/ruangan/create',[RuanganController::class, 'create'])->name('ruangan.create');
+    Route::post('/ruangan',[RuanganController::class, 'store'])->name('ruangan.store');
+    Route::get('/ruangan/{ruangan}/edit',[RuanganController::class, 'edit'])->name('ruangan.edit');
+    Route::post('/ruangan/{ruangan}/update',[RuanganController::class, 'update'])->name('ruangan.update');
+    Route::delete('/ruangan/{ruangan}/delete', [RuanganController::class, 'destroy'])->name('ruangan.delete');
+    
     Route::get('/control_panel', function () {
         return Inertia::render('ControlPanel');
     });

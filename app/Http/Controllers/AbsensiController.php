@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\MataPelajaran as Mapel;
 use App\Models\Kelas;
+use App\Models\Ruangan;
 use Illuminate\Support\Facades\Auth;
 
 class AbsensiController extends Controller
@@ -102,4 +103,31 @@ class AbsensiController extends Controller
         $absensi->delete();
         return redirect()->route('absensi')->with('message','Data Absensi Berhasil');
     }
+
+    public function isi(String $id,Mapel $mapel){
+        $data=Ruangan::with('siswa','kelas')->where('kelas_id',$id)->get();
+        return Inertia::render('Absensi/IsiAbsensi',[
+            'data' => $data,
+            'mapel'=>$mapel
+        ]);
+    }
+
+
+    public function isiAbsensi(Request $request){
+        $siswa=$request->siswa;
+        // return $siswa;
+        foreach($siswa as $s){
+            Absensi::create([
+                'siswa_id' => $s['siswa_id'],
+                'mapel_id' => $request->mapel_id,
+                'kelas_id' => $request->kelas_id,
+                'user_id' => Auth::user()->id,
+                'tanggal'=> $request->tanggal,
+                'kehadiran' => $s['kehadiran']
+            ]);
+        }
+        return redirect()->route('absensi')->with('message','Data Absensi Berhasil');
+    }
+
+
 }

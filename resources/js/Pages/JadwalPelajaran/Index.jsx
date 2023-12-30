@@ -3,6 +3,7 @@ import App from "@/Layouts/App";
 import { Link, router } from "@inertiajs/react";
 import Swal from "sweetalert2";
 export default function Index({ jadwalPelajaran }) {
+    // console.log(jadwalPelajaran);
     return (
         <App title="Jadwal Pelajaran">
             <h1 className="text-3xl font-semibold">Jadwal Pelajaran</h1>
@@ -20,6 +21,7 @@ export default function Index({ jadwalPelajaran }) {
                                 <th>No</th>
                                 <th>Kurikulum</th>
                                 <th>Kelas</th>
+                                <th>Guru</th>
                                 <th>Pelajaran</th>
                                 <th>Hari</th>
                                 <th>Jam Mulai</th>
@@ -33,6 +35,7 @@ export default function Index({ jadwalPelajaran }) {
                                     <th>{index + 1}</th>
                                     <td>{jp.kurikulum.nama_kurikulum}</td>
                                     <td>{jp.kelas.nama_kelas}</td>
+                                    <td>{jp.matapelajaran.guru.nama}</td>
                                     <td>{jp.matapelajaran.nama_mapel}</td>
                                     <td>{jp.hari}</td>
                                     <td>{jp.jam_mulai}</td>
@@ -69,6 +72,7 @@ export default function Index({ jadwalPelajaran }) {
                                         >
                                             Hapus
                                         </button>
+                                        <Link href={`/guru/isi_absen/${jp.kelas_id}/ruangan/${jp.matapelajaran.id}`} className="text-neutral">Isi Absen</Link>
                                     </td>
                                 </tr>
                             ))}

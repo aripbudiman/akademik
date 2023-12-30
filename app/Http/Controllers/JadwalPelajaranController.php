@@ -12,7 +12,7 @@ use App\Models\MataPelajaran;
 class JadwalPelajaranController extends Controller
 {
     public function index(){
-        $jadwalPelajaran=JadwalPelajaran::with('kurikulum','matapelajaran','kelas')->get();
+        $jadwalPelajaran=JadwalPelajaran::with('kurikulum','matapelajaran.guru','kelas')->get();
         return Inertia::render('JadwalPelajaran/Index',[
             'jadwalPelajaran' => $jadwalPelajaran
         ]);
